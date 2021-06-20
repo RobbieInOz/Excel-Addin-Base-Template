@@ -1,5 +1,7 @@
 # ExcelAngular
 
+The project is a template file to create a Microsoft office.js taskpane addin, for microsoft excel. This template loads the default Angular project that's created using angular cli, ng new. 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
 
 ## Generating new component templates:
@@ -24,7 +26,40 @@ Elsewhere in the files, if you're importing a file from within the app, you need
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. This should launch microsoft excel and a node.js dev server. The instance of excel should have loaded the taskpane addin.
+
+## Setup
+
+This project was created by simply doing the following:
+
+1. Created a new angular default project using angular cli 'ng new'
+2. Create a seperate example taskpane add in project using Microsoft's recommended 'yo generator' :
+`https://docs.microsoft.com/en-us/office/dev/add-ins/quickstarts/excel-quickstart-jquery?tabs=yeomangenerator`
+
+`npm install -g yo generator-office`
+`yo office`
+
+3. From the taskpane project, copy the office dependencies into the project.json file of the angular project.
+4. From the taskpane project, also copy across the created 'src/taskpane' and 'src/commands' folders.
+5. From the taskpane project, copy across the manifest.xml file, and the webpack.config.js file, and the .vscode folder.
+6. In the angular project, go to the root/index.html and the taskpane.html file and include reference to the office.js cdn in the header tag:
+    `  <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>`
+
+7. In the angualr project, in the main.ts and taskpane.ts files, initialize the office.js addin using:
+
+`
+Office.initialize = () => {
+  // document.getElementById("sideload-msg").style.display = "none";
+
+  // Bootstrap the app
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch((error) => console.error(error));
+};
+`
+
+
+
 
 ## Code scaffolding
 

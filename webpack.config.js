@@ -18,7 +18,7 @@ module.exports = async (env, options) => {
     devtool: "source-map",
     entry: {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
-      taskpane: "./src/taskpane/taskpane.ts", //This is where our starting point is! (in other angular apps, this is 'index.js')
+      taskpane: "./src/taskpane/taskpane.ts", 
       // taskpane: "./main.ts",
       // taskpane: './src/app/app.component.ts',
       commands: "./src/commands/commands.ts" //This is where our starting commands are!
